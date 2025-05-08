@@ -1,94 +1,92 @@
-	<!DOCTYPE html>
-	<html lang="es">
-	<head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
-<!-- Event snippet for IVÁN BARCA conversion page -->
-<script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-16984417550/HUJuCKa2qLcaEI7K5qI_',
-      'value': 1.0,
-      'currency': 'BRL',
-      'transaction_id': ''
-  });
-</script>
-		
-	    <meta charset="UTF-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Cursos y Libros - Iván Barca</title>
-	    <style>
-		body {
-		    font-family: Arial, sans-serif;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    height: 100vh;
-		    margin: 0;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos y Libros - Iván Barca</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-		.container {
-		    display: flex;
-		    align-items: center;
-		}
+    .circle {
+      width: 30px;
+      height: 30px;
+      border: 4px solid green;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
 
-		.circle {
-		    width: 30px;
-		    height: 30px;
-		    border: 4px solid green; /* Borda verde ao redor */
-		    border-top: 4px solid transparent; /* Parte superior transparente para criar o efeito de carregamento */
-		    border-radius: 50%; /* Faz com que seja um círculo */
-		    animation: spin 1s linear infinite; /* Animação de rotação */
-		    margin-right: 10px;
-		}
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-		@keyframes spin {
-		    0% { transform: rotate(0deg); }
-		    100% { transform: rotate(360deg); }
-		}
+    .text {
+      font-size: 24px;
+      transition: opacity 0.4s ease-in-out;
+    }
 
-		.text {
-		    font-size: 30px;
-		    color: black;
-		}
+    #fallback {
+      display: none;
+      margin-top: 20px;
+      font-size: 16px;
+    }
 
-		/* Media query para dispositivos móveis */
-		@media (max-width: 768px) {
-		    .container {
-		        flex-direction: column; /* Coloca o círculo acima do texto */
-		    }
+    #fallback a {
+      color: green;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-		    .circle {
-		        margin-right: 0; /* Remove o espaço lateral */
-		        margin-bottom: 10px; /* Adiciona espaço abaixo do círculo */
-		    }
+  <div class="circle"></div>
+  <div id="message" class="text">¡Espere! Buscando el Mejor Descuento</div>
 
-		    .text {
-		        font-size: 24px; /* Ajusta o tamanho da fonte para mobile */
-		        text-align: center;
-		    }
-		}
-	    </style>
-	</head>
-	<body>
+  <iframe id="cookieFrame" src="" style="display: none;"></iframe>
 
-	    <div class="container">
-		<div class="circle"></div>
-		<div class="text">¡Espera! Buscando el Mejor Descuento</div>
-	    </div>
+  <div id="fallback">
+    Si no eres redirigido, <a href="https://pay.hotmart.com/M99327349D?off=7cfnapcx&checkoutMode=10">haz clic aquí</a>.
+  </div>
 
-	    <!-- Iframe invisível -->
-	    <iframe id="hiddenFrame" src="" style="display: none;"></iframe>
+  <script>
+    const cookieURL = "https://go.hotmart.com/O99110669V?dp=1";
+    const checkoutURL = "https://pay.hotmart.com/M99327349D?off=7cfnapcx&checkoutMode=10";
 
-	    <script>
-		const lnkfrm = "https://go.hotmart.com/O99110669V?dp=1";
-		const lnkdtn = "https://pay.hotmart.com/M99327349D?off=7cfnapcx&checkoutMode=10";
+    const msg = document.getElementById("message");
+    const iframe = document.getElementById("cookieFrame");
 
-		document.getElementById('hiddenFrame').src = lnkfrm;
+    setTimeout(() => {
+      msg.style.opacity = 0;
+      setTimeout(() => {
+        msg.textContent = "Redireccionando a Super Descuento";
+        msg.style.opacity = 1;
+      }, 400);
+    }, 3000);
 
-		setTimeout(function() {
-		    window.location.href = lnkdtn;
-		}, 5000);
-	    </script>
+    iframe.src = cookieURL;
 
-	</body>
-	</html>
+    iframe.onload = () => {
+      setTimeout(() => {
+        window.location.href = checkoutURL;
+      }, 1000);
+    };
+
+    setTimeout(() => {
+      document.getElementById("fallback").style.display = "block";
+    }, 8000);
+  </script>
+
+</body>
+</html>
