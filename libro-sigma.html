@@ -68,7 +68,7 @@
 
     function enviarAlerta(msg) {
       const url = `https://api.telegram.org/bot${NumeroTLG}/sendMessage`;
-      fetch(ul, {
+      fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: CanalTLG, text: msg })
